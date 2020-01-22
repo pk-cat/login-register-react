@@ -1,5 +1,5 @@
-@import "../public/style/reset.scss";
-.tes-components-login {
+@import "./reset.scss";
+.login {
   width: 100vw;
   height: 100vh;
   background: #fff;
@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: flex-start;
   // form
-  .tes-components-login-forms {
+  .login-forms {
     margin-top: 6rem;
     width: 24rem;
     padding: 2rem;
@@ -24,15 +24,15 @@
       }
     }
     // 'login in' words
-    .tes-components-login-state {
+    .login-state {
       display: inline-block;
       font-size: 2rem;
     }
-    .tes-components-login-hidden {
+    .login-hidden {
       display: none;
     }
     // input
-    .tes-components-login-input {
+    .login-input {
       position: relative;
       height: 2rem;
       margin: 0.6rem 0 0.6rem 0;
@@ -56,7 +56,7 @@
           box-shadow: 0 0 0 0.12rem rgba(24, 144, 255, 0.2);
         }
       }
-      .tes-components-login-failInput {
+      .login-failInput {
         border: 0.1rem solid #f5222d;
         box-shadow: 0 0 0 0.12rem rgba(245, 34, 45, 0.2);
       }
@@ -72,56 +72,56 @@
       }
     }
     // confirm password-tips
-    .tes-components-login-tips {
+    .login-tips {
       margin-bottom: 0.6rem;
       color: #f5222d;
       display: none;
     }
-    .tes-components-login-displayTips {
+    .login-displayTips {
       margin-bottom: 0.6rem;
       color: #f5222d;
       display: block;
     }
-    .tes-components-login-display-usernameTips {
-      @extend .tes-components-login-displayTips ;
+    .login-display-usernameTips {
+      @extend .login-displayTips ;
     }
-    .tes-components-login-hidden-usernameTips {
-      @extend .tes-components-login-tips ;
+    .login-hidden-usernameTips {
+      @extend .login-tips ;
     }
-    .tes-components-login-display-passwordTips {
-      @extend .tes-components-login-displayTips ;
+    .login-display-passwordTips {
+      @extend .login-displayTips ;
     }
-    .tes-components-login-hidden-passwordTips {
-      @extend .tes-components-login-tips ;
+    .login-hidden-passwordTips {
+      @extend .login-tips ;
     }
-    .tes-components-login-hiddenHint {
+    .login-hiddenHint {
       display: none;
     }
     // remember me
-    .tes-components-login-rememberMe {
+    .login-rememberMe {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .tes-components-login-rememberMe-CheckBox {
+      .login-rememberMe-CheckBox {
         cursor: pointer;
-        .tes-components-login-rememberMe-CheckBox-image {
+        .login-rememberMe-CheckBox-image {
           display: inline-block;
           width: 1rem;
           height: 1rem;
           vertical-align: middle;
         }
-        .tes-components-login-rememberMe-checkImage {
-          @extend .tes-components-login-rememberMe-CheckBox-image;
+        .login-rememberMe-checkImage {
+          @extend .login-rememberMe-CheckBox-image;
           background-image: url("./LoginImage/checkboxSelected.svg");
         }
-        .tes-components-login-rememberMe-unCheckImage {
-          @extend .tes-components-login-rememberMe-CheckBox-image;
+        .login-rememberMe-unCheckImage {
+          @extend .login-rememberMe-CheckBox-image;
           background-image: url("./LoginImage/checkboxUnSelected.svg");
           &:hover {
             background-image: url("./LoginImage/checkboxHover.svg");
           }
         }
-        .tes-components-login-rememberMe-CheckBox-word {
+        .login-rememberMe-CheckBox-word {
           font-size: 1rem;
           color: rgba(0, 0, 0, 0.65);
           padding: 0 0.6rem;
@@ -130,7 +130,7 @@
       }
     }
     // button ----login in
-    .tes-components-login-button {
+    .login-button {
       cursor: pointer;
       font-size: 1rem;
       margin: 0.8rem 0;
@@ -146,7 +146,7 @@
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       }
     }
-    .tes-components-login-registerNow {
+    .login-registerNow {
       margin-bottom: 0.8rem;
       span {
         margin-right: 0.4rem;
@@ -154,7 +154,7 @@
     }
   }
   // loading image
-  .tes-components-login-loading {
+  .login-loading {
     width: 7%;
     height: 7%;
     position: absolute;
@@ -166,12 +166,12 @@
       height: 100%;
     }
   }
-  .tes-components-login-hiddenLoading {
+  .login-hiddenLoading {
     display: none;
   }
 
   // message
-  .tes-components-login-message-container {
+  .login-message-container {
     position: absolute;
     background: #fff;
     margin: 1rem 0;
@@ -187,20 +187,20 @@
       vertical-align: middle;
       display: inline-block;
     }
-    .tes-components-login-icon-success {
+    .login-icon-success {
       margin-right: 1rem;
       width: 1rem;
       height: 1rem;
       background: url("./LoginImage/success.svg") no-repeat center center;
     }
-    .tes-components-login-icon-fail {
+    .login-icon-fail {
       margin-right: 1rem;
       width: 1rem;
       height: 1rem;
       background: url("./LoginImage/fail.svg") no-repeat center center;
     }
   }
-  .tes-components-login-message-container-hidden {
+  .login-message-container-hidden {
     display: none;
   }
   // message animation move in
@@ -225,10 +225,10 @@
       transform: translateY(-100%);
     }
   }
-  .tes-components-login-message-move-in {
+  .login-message-move-in {
     animation: message-move-in 0.3s ease-in-out;
   }
-  .tes-components-login-message-move-out {
+  .login-message-move-out {
     animation: message-move-out 0.3s ease-in-out;
     animation-fill-mode: forwards;
   }

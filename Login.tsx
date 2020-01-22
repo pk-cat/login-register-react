@@ -1,10 +1,8 @@
-import { ILogger, ILoggerFactory } from "@tiama/logging";
 import * as React from "react";
 import "./login.scss";
 import { LoginPagePrompt } from "./LoginPagePrompt";
 export interface ILoginProps {
-  /** A mandatory API, is used for log */
-  loggerFactory: ILoggerFactory;
+
 }
 export interface ILoginState {
   /** confirm password */
@@ -21,7 +19,6 @@ export interface ILoginState {
   displayMessage: number;
   /** if value is 0 ,form is for login in, if value is 1, that means form is for registering */
   formState: number;
-  logger: ILogger;
   /** Display user login or registration results as a message */
   message: string;
   /** password */
@@ -53,7 +50,6 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
       displayPasswordTips: false,
       displayUsernameTips: false,
       formState: 0,
-      logger: props.loggerFactory.build("Login"),
       message: LoginPagePrompt.messageLoginSuccessful,
       password: "",
       passwordTips: LoginPagePrompt.tips,
@@ -88,12 +84,12 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     const loadingImage = require("./LoginImage/loading.svg");
     const formStateWords = this.state.formState === 0 ? "Login in" : "Register";
     const loadingClassName = this.state.displayLoading
-      ? "tes-components-login-loading"
-      : "tes-components-login-hiddenLoading";
+      ? "login-loading"
+      : "login-hiddenLoading";
     return (
-      <div className="tes-components-login">
-        <form className="tes-components-login-forms">
-          <label className="tes-components-login-state">{formStateWords}</label>
+      <div className="login">
+        <form className="login-forms">
+          <label className="login-state">{formStateWords}</label>
           {/* Username */}
           {this.renderUsername()}
           {/* Password */}
@@ -200,11 +196,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
   /** make sure username and password isn't empty then send request to backend for login in */
   private loginIn() {
-    this.state.logger.debug(
-      "login in",
-      `password: ${this.state.password}`,
-      `username: ${this.state.username}`,
-    );
+
     if (this.state.password !== "" && this.state.username !== "") {
       if (this.state.password.length < 6) {
         this.handleDisplayPasswordTips();
@@ -238,19 +230,19 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
   private renderConfirmPassword() {
     const confirmPasswordClassName =
       this.state.formState === 0
-        ? "tes-components-login-hidden tes-components-login-input"
-        : "tes-components-login-input";
+        ? "login-hidden login-input"
+        : "login-input";
     const confirmPasswordImage = require("./LoginImage/confirmPassword.svg");
     const confirmPasswordTipsClassName = this.state.displayConfirmPasswordTips
-      ? "tes-components-login-displayTips"
-      : "tes-components-login-tips";
+      ? "login-displayTips"
+      : "login-tips";
     return (
       <>
         <div className={confirmPasswordClassName}>
           <input
             type="password"
-            name="tes-components-login-ConfirmPassword"
-            id="tes-components-login-ConfirmPassword"
+            name="login-ConfirmPassword"
+            id="login-ConfirmPassword"
             placeholder="Confirm Password"
             value={this.state.confirmPassword}
             onChange={this.changeConfirmPassword}
@@ -268,21 +260,21 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     // message className
     const messageClassName =
       this.state.displayMessage === 0
-        ? "tes-components-login-message-container-hidden"
+        ? "login-message-container-hidden"
         : this.state.displayMessage === 1
-        ? "tes-components-login-message-container tes-components-login-message-move-in"
-        : "tes-components-login-message-container tes-components-login-message-move-out";
+        ? "login-message-container login-message-move-in"
+        : "login-message-container login-message-move-out";
     // message icon className
     const messageIconClassName = this.state.result
-      ? "tes-components-login-icon-success"
-      : "tes-components-login-icon-fail";
+      ? "login-icon-success"
+      : "login-icon-fail";
     return (
       <>
         <div className={messageClassName}>
           {/* icon */}
           <div>
             <span className={messageIconClassName} />
-            <span className="tes-components-login-word-success">
+            <span className="login-word-success">
               {this.state.message}
             </span>
           </div>
@@ -294,15 +286,15 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
   private renderPassword() {
     const passwordImage = require("./LoginImage/password.svg");
     const passwordTipsClassName = this.state.displayPasswordTips
-      ? "tes-components-login-display-passwordTips"
-      : "tes-components-login-hidden-passwordTips";
+      ? "login-display-passwordTips"
+      : "login-hidden-passwordTips";
     return (
       <>
-        <div className="tes-components-login-input">
+        <div className="login-input">
           <input
             type="password"
-            name="tes-components-login-password"
-            id="tes-components-login-password"
+            name="login-password"
+            id="login-password"
             placeholder="Password"
             value={this.state.password}
             onChange={this.changePassword}
@@ -316,22 +308,22 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
   /** render remember me and forget password button */
   private renderRememberMeAndForgetPassword() {
     const rememberMeClassName = this.state.rememberPassword
-      ? "tes-components-login-rememberMe-checkImage"
-      : "tes-components-login-rememberMe-unCheckImage";
+      ? "login-rememberMe-checkImage"
+      : "login-rememberMe-unCheckImage";
     const rememberPasswordClassName =
       this.state.formState === 0
-        ? "tes-components-login-rememberMe"
-        : "tes-components-login-hidden";
+        ? "login-rememberMe"
+        : "login-hidden";
     return (
       <>
         <div className={rememberPasswordClassName}>
           <p
             role="button"
             onClick={this.toggleRememberPassword}
-            className="tes-components-login-rememberMe-CheckBox"
+            className="login-rememberMe-CheckBox"
           >
             <i className={rememberMeClassName} />
-            <span className="tes-components-login-rememberMe-CheckBox-word">
+            <span className="login-rememberMe-CheckBox-word">
               Remember Me
             </span>
           </p>
@@ -352,7 +344,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     return this.state.formState === 0 ? (
       <button
         type="button"
-        className="tes-components-login-button"
+        className="login-button"
         onClick={this.loginIn}
       >
         Login
@@ -360,7 +352,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     ) : (
       <button
         type="button"
-        className="tes-components-login-button"
+        className="login-button"
         onClick={this.register}
       >
         Register
@@ -374,7 +366,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
       this.state.formState === 0 ? "register now" : "login in";
     return (
       <>
-        <p className="tes-components-login-registerNow">
+        <p className="login-registerNow">
           <span>Or</span>
           <span role="button" onClick={this.toggleFormState}>
             <a href="#" onClick={e => e.preventDefault()} role="button">
@@ -389,15 +381,15 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
   private renderUsername() {
     const usernameImage = require("./LoginImage/username.svg");
     const usernameTipClassName = this.state.displayUsernameTips
-      ? "tes-components-login-display-usernameTips"
-      : "tes-components-login-hidden-usernameTips";
+      ? "login-display-usernameTips"
+      : "login-hidden-usernameTips";
     return (
       <>
-        <div className="tes-components-login-input">
+        <div className="login-input">
           <input
             type="text"
-            name="tes-components-login-username"
-            id="tes-components-login-username"
+            name="login-username"
+            id="login-username"
             placeholder="Username"
             value={this.state.username}
             onChange={this.changeUsername}
@@ -411,12 +403,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
   /** make sure username and password isn't empty then send request to backend for register */
   private register() {
-    this.state.logger.debug(
-      "register",
-      `confirmPassword: ${this.state.confirmPassword}`,
-      `password:${this.state.password}`,
-      `username:${this.state.username}`,
-    );
+
     if (
       this.state.confirmPassword !== "" &&
       this.state.password !== "" &&
@@ -522,10 +509,6 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
   /** toggle remember password checkbox state of checked */
   private toggleRememberPassword() {
-    this.state.logger.debug(
-      "rememberPassword state changed",
-      !this.state.rememberPassword,
-    );
     this.setState({ rememberPassword: !this.state.rememberPassword });
   }
 }
