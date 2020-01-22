@@ -1,0 +1,235 @@
+@import "../public/style/reset.scss";
+.tes-components-login {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  // form
+  .tes-components-login-forms {
+    margin-top: 6rem;
+    width: 24rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    background: #eeeeee;
+    a {
+      font-size: 1rem;
+      text-decoration: none;
+      outline: 0;
+      color: #1890ff;
+      &:hover {
+        color: #40a9ff;
+        transition: color 0.3s ease;
+      }
+    }
+    // 'login in' words
+    .tes-components-login-state {
+      display: inline-block;
+      font-size: 2rem;
+    }
+    .tes-components-login-hidden {
+      display: none;
+    }
+    // input
+    .tes-components-login-input {
+      position: relative;
+      height: 2rem;
+      margin: 0.6rem 0 0.6rem 0;
+
+      input {
+        outline: none;
+        border: 0.1rem solid #d9d9d9;
+        width: 100%;
+        height: 100%;
+        padding-left: 2rem;
+        box-sizing: border-box;
+        border-radius: 0.4rem;
+        font-size: 0.86rem;
+        &:hover {
+          outline: none;
+          border: 0.1rem solid #40a9ff;
+        }
+        &:focus {
+          outline: none;
+          border: 0.1rem solid #40a9ff;
+          box-shadow: 0 0 0 0.12rem rgba(24, 144, 255, 0.2);
+        }
+      }
+      .tes-components-login-failInput {
+        border: 0.1rem solid #f5222d;
+        box-shadow: 0 0 0 0.12rem rgba(245, 34, 45, 0.2);
+      }
+
+      img {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 3%;
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+    }
+    // confirm password-tips
+    .tes-components-login-tips {
+      margin-bottom: 0.6rem;
+      color: #f5222d;
+      display: none;
+    }
+    .tes-components-login-displayTips {
+      margin-bottom: 0.6rem;
+      color: #f5222d;
+      display: block;
+    }
+    .tes-components-login-display-usernameTips {
+      @extend .tes-components-login-displayTips ;
+    }
+    .tes-components-login-hidden-usernameTips {
+      @extend .tes-components-login-tips ;
+    }
+    .tes-components-login-display-passwordTips {
+      @extend .tes-components-login-displayTips ;
+    }
+    .tes-components-login-hidden-passwordTips {
+      @extend .tes-components-login-tips ;
+    }
+    .tes-components-login-hiddenHint {
+      display: none;
+    }
+    // remember me
+    .tes-components-login-rememberMe {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .tes-components-login-rememberMe-CheckBox {
+        cursor: pointer;
+        .tes-components-login-rememberMe-CheckBox-image {
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          vertical-align: middle;
+        }
+        .tes-components-login-rememberMe-checkImage {
+          @extend .tes-components-login-rememberMe-CheckBox-image;
+          background-image: url("./LoginImage/checkboxSelected.svg");
+        }
+        .tes-components-login-rememberMe-unCheckImage {
+          @extend .tes-components-login-rememberMe-CheckBox-image;
+          background-image: url("./LoginImage/checkboxUnSelected.svg");
+          &:hover {
+            background-image: url("./LoginImage/checkboxHover.svg");
+          }
+        }
+        .tes-components-login-rememberMe-CheckBox-word {
+          font-size: 1rem;
+          color: rgba(0, 0, 0, 0.65);
+          padding: 0 0.6rem;
+          vertical-align: middle;
+        }
+      }
+    }
+    // button ----login in
+    .tes-components-login-button {
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      padding: 0.3rem;
+      width: 100%;
+      color: #fff;
+      background-color: rgb(24, 144, 255);
+      border-radius: 0.4rem;
+      border: 0.1rem solid rgb(24, 144, 255);
+      &:hover {
+        background-color: #40a9ff;
+        border: 0.1rem solid #40a9ff;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    }
+    .tes-components-login-registerNow {
+      margin-bottom: 0.8rem;
+      span {
+        margin-right: 0.4rem;
+      }
+    }
+  }
+  // loading image
+  .tes-components-login-loading {
+    width: 7%;
+    height: 7%;
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .tes-components-login-hiddenLoading {
+    display: none;
+  }
+
+  // message
+  .tes-components-login-message-container {
+    position: absolute;
+    background: #fff;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 1rem 0 #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    span {
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .tes-components-login-icon-success {
+      margin-right: 1rem;
+      width: 1rem;
+      height: 1rem;
+      background: url("./LoginImage/success.svg") no-repeat center center;
+    }
+    .tes-components-login-icon-fail {
+      margin-right: 1rem;
+      width: 1rem;
+      height: 1rem;
+      background: url("./LoginImage/fail.svg") no-repeat center center;
+    }
+  }
+  .tes-components-login-message-container-hidden {
+    display: none;
+  }
+  // message animation move in
+  @keyframes message-move-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  // message animation move out
+  @keyframes message-move-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+  .tes-components-login-message-move-in {
+    animation: message-move-in 0.3s ease-in-out;
+  }
+  .tes-components-login-message-move-out {
+    animation: message-move-out 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
